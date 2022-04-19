@@ -1,0 +1,9 @@
+{{#if admin}}
+{{> navbar usuario = admin }}
+{{else}}
+{{> navbar usuario = usuario }}
+{{/if}}
+
+<div class="container">
+    {{> detail }}
+</div>

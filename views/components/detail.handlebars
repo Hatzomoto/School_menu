@@ -1,0 +1,95 @@
+<section class="container-fluid pt-5 pb-2 px-5 mt-5">
+    <div class="p-3 rounded-pill" style="background-color: #fcfcfce8">
+
+        <div class="bg-info text-white rounded-pill border border-dark">
+            <div class=" py-2   align-items-center ">
+                <div class="text-center">
+                    <h3 class="m-0">Rectification order number {{order.id}} (Date order {{date}})</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-deck mt-3">
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-01.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title m-1">Caloric</h5>
+                    <p class="mb-0">Ordered: {{order.caloric}}</p>
+                    <p class="mb-2">Consumed: {{order.caloric_real}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-02.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title m-1">Celiac</h5>
+                    <p class="mb-0">Ordered: {{order.celiac}}</p>
+                    <p class="mb-2">Consumed: {{order.celiac_real}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-03.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title m-1">Ethnic</h5>
+                    <p class="mb-0">Ordered: {{order.ethnic}}</p>
+                    <p class="mb-2">Consumed: {{order.ethnic_real}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-04.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title m-1">Standard</h5>
+                    <p class="mb-0">Ordered: {{order.standard}}</p>
+                    <p class="mb-2">Consumed: {{order.standard_real}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-01.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title m-1">Vegetarian</h5>
+                    <p class="mb-0">Ordered: {{order.vegetarian}}</p>
+                    <p class="mb-2">Consumed: {{order.vegetarian_real}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pr-3 pl-3 mt-3">
+            <div class=" py-2 row bg-info text-white align-items-center rounded-pill text-center border border-dark">
+
+                <div class="col-12 col-sm-8">
+                    <h4 class="mb-1">A total of {{total}} servings were lost</h4>
+                </div>
+
+                <div class="col-12 col-sm-4">
+                    {{#if admin}}
+                    <a class="btn btn-primary pr-4 pl-4 rounded" onclick="go()">Home</a>
+                    {{else}}
+                    <a class="btn btn-primary pr-4 pl-4 rounded" href="/" >Home</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="pr-3 pl-3 mt-3 bg-light text-dark align-items-center rounded border border-dark">
+            <h5 class="pt-2 mb-0 text-center">Observations:</h5>
+            <hr class="w-75">
+            {{#if observations}}<p class="pb-2 text-center">"{{observations}}"</p>{{else}}
+            <p class="pb-2 text-center">"No observations"</p>{{/if }}
+        </div>
+        
+    </div>
+</section>
+
+<script>
+
+    const go = () => {
+        window.history.back();
+    }
+
+</script>

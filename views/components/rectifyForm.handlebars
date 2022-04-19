@@ -1,0 +1,132 @@
+<section class="container-fluid pt-5 pb-2 px-5 mt-5">
+    <div class="p-3 rounded-pill form-group" style="background-color: #fcfcfce8">
+
+        <div class="bg-info text-white rounded-pill border border-dark">
+            <div class=" py-2   align-items-center ">
+                <div class="text-center">
+                    <h3 class="m-0">Rectification order number {{order.id}} (Date order {{date}})</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-deck mt-3 form-group">
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-01.png" class="card-img-top" alt="...">
+                <div class="card-body form-group">
+                    <h5 class="card-title">Caloric</h5>
+                    <input class="text-center" type="number" id="caloric" value="0" min="0" max="{{order.caloric}}"
+                        step="1" />
+                    <p class="mb-0">Ordered: {{order.caloric}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-02.png" class="card-img-top" alt="...">
+                <div class="card-body form-group">
+                    <h5 class="card-title">Celiac</h5>
+                    <input class="text-center" type="number" id="celiac" value="0" min="0" max="{{order.celiac}}"
+                        step="1" />
+                    <p class="mb-0">Ordered: {{order.celiac}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-03.png" class="card-img-top" alt="...">
+                <div class="card-body form-group">
+                    <h5 class="card-title">Ethnic</h5>
+                    <input class="text-center" type="number" id="ethnic" value="0" min="0" max="{{order.ethnic}}"
+                        step="1" />
+                    <p class="mb-0">Ordered: {{order.ethnic}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-04.png" class="card-img-top" alt="...">
+                <div class="card-body form-group">
+                    <h5 class="card-title">Standard</h5>
+                    <input class="text-center" type="number" id="standard" value="0" min="0" max="{{order.standard}}"
+                        step="1" />
+                    <p class="mb-0">Ordered: {{order.standard}}</p>
+                </div>
+            </div>
+
+            <div class="card h-50 text-white bg-info text-center rounded-pill border border-dark">
+                <img src="/img/gastronomy-01.png" class="card-img-top" alt="...">
+                <div class="card-body form-group">
+                    <h5 class="card-title">Vegetarian</h5>
+                    <input class="text-center" type="number" id="vegetarian" value="0" min="0"
+                        max="{{order.vegetarian}}" step="1" />
+                    <p class="mb-0">Ordered: {{order.vegetarian}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group pr-3 pl-3 mt-3 mb-4 bg-light text-dark align-items-center rounded border border-dark">
+            
+            <h5 class="pt-2 mb-0 text-center">Observations:</h5>
+            <hr class="w-75">
+            <textarea placeholder="Write your suggestions, comments, whatever you want to tell us..."
+                class="form-control mb-3" id="observations" rows="4"></textarea>
+            <input type="hidden" id="_csrf" value="{{csrfToken}}">
+
+            <div class="row text-center mb-2">
+                <div class=" form-group mb-1 mt-1 col-12 col-sm-6 text-lg-right text-center">
+                    <button onclick="update({{order.id}})" class="btn btn-primary  pr-4 pl-4 rounded">Rectify</button>
+                </div>
+
+                <div class=" form-group mb-1 mt-1 col-12 col-sm-6 text-lg-left text-center">
+                    <a class="btn btn-primary  pr-4 pl-4 rounded" href="/" role="button">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const update = async (id) => {
+
+        const order_id = id;
+        const caloric = $('#caloric').val();
+        const celiac = $('#celiac').val();
+        const ethnic = $('#ethnic').val();
+        const standard = $('#standard').val();
+        const vegetarian = $('#vegetarian').val();
+        const observations = $('#observations').val();
+        const _csrf = $('#_csrf').val();
+        const payload = { order_id, caloric, celiac, ethnic, standard, vegetarian, observations, _csrf }
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+
+                try {
+                const { data } = await axios.put('/rectify_order', payload);
+                Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(() => window.location.href = '/', 1500);
+                }
+                catch ({ response }) {
+                    const { data: { message } } = response;
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'info',
+                        text: message,
+                    });
+                }
+            }
+        });
+    }
+
+</script>

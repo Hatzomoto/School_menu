@@ -1,0 +1,44 @@
+<div class="container-fluid px-5 mt-4">
+  <div class="p-3 rounded border border-dark" style="background-color: #fcfcfc">
+
+    <form action="/" method="get">
+      <div class="form-row align-items-center text-center">
+
+        <div class="col-12 col-sm-1 mb-1">
+          <label class="mb-0 font-weight-bold" for="exampleFormControlSelect1">Institute</label>
+        </div>
+
+        <div class="col-12 col-sm-3 mb-1">
+          <select class="form-control" id="exampleFormControlSelect1" name="institute" required>
+            <option value="alls">Alls</option>
+            {{#each options}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="col-12 col-sm-1 mb-1">
+          <label class="mb-0 font-weight-bold" for="exampleFormControlSelect1">From</label>
+        </div>
+
+        <div class="col-12 col-sm-2 mb-1">
+          <input type="date" name="from" required>
+        </div>
+
+        <div class="col-12 col-sm-1 mb-1">
+          <label class="mb-0 font-weight-bold" for="exampleFormControlSelect1">To</label>
+        </div>
+
+        <div class="col-12 col-sm-2 mb-1">
+          <input type="date" name="to" required>
+        </div>
+
+        <div class="col-12 col-sm-2 mb-1">
+          <button type="submit" class="btn btn-primary pr-4 pl-4 rounded-pill">Filter</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>

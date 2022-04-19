@@ -1,0 +1,17 @@
+
+{{#if admin}}
+{{> navbar usuario = admin }}
+{{else}}
+{{> navbar usuario = usuario }}
+{{/if}}
+
+<div class="container">
+{{> cards }}
+
+{{#if admin}}
+{{> filter }}
+{{/if}}
+
+
+{{> table }}
+</div>

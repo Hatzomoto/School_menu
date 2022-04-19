@@ -1,0 +1,76 @@
+<h1 class="text-center mt-4 mb-5 font-italic font-weight-bolder">School Menu</h1>
+
+
+<div class="py-4 row text-center">
+    <div class="form-group col-8 col-sm-4 m-auto bg-info text-white border border-dark rounded shadow-lg">
+        <div class="col-12 col-sm-12">
+            <h2 class="mt-2">Sign Up</h2>
+            <hr class="w-75" />
+        </div>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input class="form-control col-10 col-sm-12 m-auto border border-dark" type="text" id="name" />
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input class="form-control col-10 col-sm-12 m-auto border border-dark" type="text" id="email" />
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control col-10 col-sm-12 m-auto border border-dark" type="password" id="password" />
+        </div>
+
+        <div class="form-group">
+            <label>Confirm password</label>
+            <input class="form-control col-10 col-sm-12 m-auto border border-dark" type="password" id="repassword" />
+        </div>
+
+        <div class="col-12 col-sm-12">
+            <button onclick="signUp()" class="btn btn-success mb-3 border border-dark">Sign up</button>
+            <p>Already have your account. <a class="text-primary" href="/login">Login</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    const signUp = async () => {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const repassword = document.getElementById('repassword').value;
+        const payload = { name, email, password };
+        if (password === repassword) {
+            try {
+                const { data } = await axios.post('/new_user', payload);
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Successfully registered!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setTimeout(() => window.location.href = '/login', 2000);
+            }
+            catch ({ response }) {
+                const { data: { message } } = response;
+                const { data: { name } } = response;
+                Swal.fire({
+                    position: 'top',
+                    icon: name == 'Data Error'? 'error' : 'info',
+                    text: message,
+                });
+            }
+        } else {
+            Swal.fire({
+                position: 'top',
+                icon: 'info',
+                text: 'Your password must be the same in both fields',
+            });
+        }
+    }
+
+</script>

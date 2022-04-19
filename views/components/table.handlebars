@@ -1,0 +1,51 @@
+<div class="table-responsive container-fluid pb-3 px-5 mt-2 mb-4">
+    <div class="p-3 rounded table-responsive border border-dark" style="background-color: #fcfcfc" >
+        <table class="table table-hover px-5 mb-0 text-center ">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Institute</th>
+                    <th scope="col">Caloric</th>
+                    <th scope="col">Celiac</th>
+                    <th scope="col">Ethnic</th>
+                    <th scope="col">Standard</th>
+                    <th scope="col">Vegetarian</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if admin }}
+                {{#each tabla}}
+                <tr>
+                    <td>{{this.date_order}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.caloric}}</td>
+                    <td>{{this.celiac}}</td>
+                    <td>{{this.ethnic}}</td>
+                    <td>{{this.standard}}</td>
+                    <td>{{this.vegetarian}}</td>
+                    <td>{{#if this.is_rectified }}<a class="btn btn-warning rounded-pill pl-4 pr-4" href="/orders/{{this.id_order}}" role="button">Details</a>{{else}}Must rectify{{/if}}</td>
+                </tr>
+                {{/each}}
+                {{else}}
+                {{#each tabla}}
+                <tr>
+                    <td>{{this.date_order}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.caloric}}</td>
+                    <td>{{this.celiac}}</td>
+                    <td>{{this.ethnic}}</td>
+                    <td>{{this.standard}}</td>
+                    <td>{{this.vegetarian}}</td>
+                    <td>{{#if this.is_rectified }}<a class="btn btn-warning rounded-pill pl-4 pr-4" href="/orders/{{this.id_order}}" role="button">Details</a>
+                    {{else}}<a class="btn btn-success rounded-pill pl-4 pr-4" href="/orders/{{this.id_order}}/rectify" role="button">Rectify</a>{{/if}}</td>
+                </tr>
+                {{/each}}
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
