@@ -16,6 +16,8 @@ Test: https://schoolmenu-app.herokuapp.com
 
 App that allows you to order five different menus from a registered high school. Once the order has been placed and consumed, it must be rectified to verify the menus consumed, the result is a table with a list of all the orders and the details of each one. The Administrator can view all the orders from different menus and perform a filter to search for a specific one.
 
+Postgresql was used for data persistence.
+
 ***
 
 ## Dependencies
